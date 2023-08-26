@@ -1,0 +1,17 @@
+name: Build
+
+on: [push, pull_request]
+
+jobs:
+  build_wheels:
+    name: Build wheels on ${{ matrix.image }} (Qt ${{ matrix.qt }} )
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        image: [manylinux_2_28]
+        qt: [6.4.2, 5.15.2]
+        arch: [x86_64]
+    container:
+      image: ghcr.io/python-limereport/pyside_builder_${{ matrix.image }}_${{ matrix.arch }}:qt-${{ matrix.qt }}
+    steps:
+      - run: echo test;
