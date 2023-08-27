@@ -18,9 +18,9 @@ qt5_build()
 mkdir -p /output
 
 cd /opt \
-    git clone -b ${QT_VERSION} https://code.qt.io/pyside/pyside-setup.git \
-    cd pyside-setup \
-    pip3 install -r requirements.txt
+    && git clone -b ${QT_VERSION} https://code.qt.io/pyside/pyside-setup.git \
+    && cd pyside-setup \
+    && pip3 install -r requirements.txt
 
 case $QT_VERSION in 
     6*)
