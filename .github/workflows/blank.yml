@@ -15,7 +15,7 @@ jobs:
         experimental: [false]
         include:
           - image: manylinux_2_28
-            qt: 6.5.2
+            qt: 6.5.3
             arch: x86_64
             experimental: true
     container:
