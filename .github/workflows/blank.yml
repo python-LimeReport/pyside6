@@ -4,20 +4,22 @@ on: [push, pull_request]
 
 jobs:
   build_linux:
-    name: Build on ${{ matrix.image }} (Qt ${{ matrix.qt }} )
+    name: Build on ${{ matrix.image }} (Qt ${{ matrix.qt }})
     runs-on: ubuntu-latest
     strategy:
       matrix:
         image: [manylinux_2_28]
-        qt: [6.4.2]
+        qt: [6.5.2, 6.4.2]
         # qt: [6.4.2, 5.15.2]
         arch: [x86_64]
     container:
       image: ghcr.io/python-limereport/pyside_builder_${{ matrix.image }}_${{ matrix.arch }}:qt-${{ matrix.qt }}
     steps:
-      - uses: actions/checkout@v3
-      - run:  echo "QT_VERSION=${{ matrix.qt }}" >> "$GITHUB_ENV"
-      - run: ./build.sh
-      - uses: actions/upload-artifact@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Build
+        run: ./build.sh
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
         with:
           path: /output/*
