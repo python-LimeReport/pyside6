@@ -14,7 +14,9 @@ jobs:
         arch: [x86_64]
         experimental: [false]
         include:
-          - version: 6.5.2
+          - image: manylinux_2_28
+            qt: 6.5.2
+            arch: x86_64
             experimental: true
     container:
       image: ghcr.io/python-limereport/pyside_builder_${{ matrix.image }}_${{ matrix.arch }}:qt-${{ matrix.qt }}
