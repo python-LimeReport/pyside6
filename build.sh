@@ -50,4 +50,4 @@ main()
     esac
 }
 
-
+main
