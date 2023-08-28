@@ -3,7 +3,7 @@
 qt6_build()
 {
     python3 setup.py build --parallel "$(nproc)" --limited-api yes
-    export dir_name=qfpa-py${PYTHON_VERSION}-qt${QT_VERSION}-64bit-release \
+    export dir_name=qfpa-py${PYTHON_VERSION}-qt${QT_VERSION}-64bit-release
     tar czvf "/output/$dir_name.tar.gz" -C "./build/$dir_name/install" .
     python3 setup.py build --parallel "$(nproc)" bdist_wheel --limited-api yes
     cp ./dist/* /output
