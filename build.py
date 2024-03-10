@@ -3,6 +3,13 @@ import os
 import shutil
 import tarfile
 
+def get_opt_dir():
+    if os.name == 'nt':
+        os.mkdir("/opt")
+        return "/opt"
+    else:
+        return "/opt"
+
 def qt6_build():
     subprocess.run(["python3", "setup.py", "build", "--parallel", str(os.cpu_count()), "bdist_wheel", "--limited-api", "yes"], check=True)
     dir_name = f'qfpa-py{os.environ["PYTHON_VERSION"]}-qt{os.environ["QT_VERSION"]}-64bit-release'
@@ -24,7 +31,7 @@ def init():
 
     os.makedirs('/output', exist_ok=True)
 
-    os.chdir('/opt')
+    os.chdir(get_opt_dir())
     subprocess.run(["git", "clone", "-b", os.environ["QT_VERSION"], "https://code.qt.io/pyside/pyside-setup.git"], check=True)
     os.chdir('pyside-setup')
     subprocess.run(["pip3", "install", "-r", "requirements.txt"], check=True)
