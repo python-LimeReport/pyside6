@@ -38,7 +38,7 @@ jobs:
     runs-on: windows-2019
     strategy:
       matrix:
-        qt: 6.4.2
+        qt: [6.4.2]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
